@@ -35,6 +35,23 @@ void printll(struct Node* temp){
         temp = temp->next;
     }
 }
+
+void deletell(struct Node* temp, int x){
+    struct Node* prev;
+    while(temp!= NULL){
+        if(temp->data == x){
+            if(temp==head){
+                head = head->next;
+                break;
+            }
+            prev->next = temp->next;
+            break;
+        }
+        prev = temp;
+        temp = temp->next; 
+    }
+}
+
 void main(){
     int n, ix, num_nodes;
     head = (struct Node*)malloc(1*sizeof(struct Node));
@@ -51,6 +68,9 @@ void main(){
     printf("\nHead data = %d, current data=%d\n", head->data, current->data);
     printf("\nHead next = %p\n", head->next);
     printf("\n\n");
+    printll(head);
+    printf("\n");
+    deletell(head, 4);
     printll(head);
     printf("\n");
 }
