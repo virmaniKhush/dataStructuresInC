@@ -27,7 +27,37 @@ void insert_at_end(int val){
         current = tmp;
     }
     }
-void printll(struct Node* temp){
+void insert_at_pos_n(int val, int pos){
+    struct Node* temp_node;
+    struct Node* temp;
+    temp = (struct Node*)malloc(1*sizeof(struct Node));
+    temp_node = (struct Node*)malloc(1*sizeof(struct Node));
+    temp->data = val;
+    int cntr = 1;
+    if(pos == 1){
+        temp->next = head;
+        head = temp;
+    }
+    temp_node = head;
+    int flag=0;
+    while(temp_node != NULL){
+        if(cntr == pos-1 && pos>2){
+            temp->next = temp_node->next;
+            temp_node->next = temp;
+            // printf("\nNode inserted at position %d", cntr+1);
+            flag=1;
+            break;
+        }
+        temp_node = temp_node->next;
+        cntr++;
+    }
+    if(flag==0){
+        printf("\nPlease enter a valid position !\n");
+    }
+}
+void printll(){
+    struct Node* temp;
+    temp = head;
     int cntr =1;
     while(temp!= NULL){ 
         printf("\nValue of node %d = %d", cntr, temp->data);
@@ -36,7 +66,7 @@ void printll(struct Node* temp){
     }
 }
 
-void deletell(struct Node* temp, int x){
+void delete_using_value(struct Node* temp, int x){
     struct Node* prev;
     while(temp!= NULL){
         if(temp->data == x){
@@ -68,9 +98,12 @@ void main(){
     printf("\nHead data = %d, current data=%d\n", head->data, current->data);
     printf("\nHead next = %p\n", head->next);
     printf("\n\n");
-    printll(head);
+    printll();
     printf("\n");
-    deletell(head, 4);
-    printll(head);
+    delete_using_value(head, 4);
+    printll();
+    printf("\n");
+    insert_at_pos_n(1234, 4);
+    printll();
     printf("\n");
 }
