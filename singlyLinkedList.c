@@ -31,7 +31,6 @@ void insert_at_pos_n(int val, int pos){
     struct Node* temp_node;
     struct Node* temp;
     temp = (struct Node*)malloc(1*sizeof(struct Node));
-    temp_node = (struct Node*)malloc(1*sizeof(struct Node));
     temp->data = val;
     int cntr = 1;
     if(pos == 1){
@@ -54,6 +53,25 @@ void insert_at_pos_n(int val, int pos){
     if(flag==0){
         printf("\nPlease enter a valid position !\n");
     }
+}
+void reverse_ll(struct Node* current_node){
+    struct Node* prev_node;
+    struct Node* next_node;
+    prev_node = (struct Node*)malloc(1*sizeof(struct Node));
+    prev_node = NULL;
+    while(current_node!=NULL){
+        next_node = current_node->next;
+        current_node->next = prev_node;
+        prev_node = current_node;
+        current_node=next_node;
+    }
+    head = prev_node;
+}
+void recursive_reverse(struct Node* node, struct Node* prev_node, struct Node* next_node){
+        next_node = node->next;
+        node->next = prev_node;
+        prev_node = node;
+        node=next_node;
 }
 void printll(){
     struct Node* temp;
@@ -104,6 +122,9 @@ void main(){
     printll();
     printf("\n");
     insert_at_pos_n(1234, 4);
+    printll();
+    printf("\n");
+    reverse_ll(head);
     printll();
     printf("\n");
 }
