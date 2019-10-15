@@ -36,11 +36,13 @@ void main(){
     head1->prev=NULL;
     head1->data=1;
     head1->next = NULL;
-    int x=2;
-    int y=3, a=4, z=5;
-    insert_at_end(head1, x);
-    insert_at_end(head1, y);
-    insert_at_end(head1, z);
-    insert_at_end(head1, a);
+    int ix, n, num_nodes;
+    printf("Enter number of nodes to be added : ");
+    scanf("%d", &num_nodes);
+    for(ix=0; ix<num_nodes; ix++){
+        printf("\nEnter value : ");
+        scanf("%d", &n);
+        insert_at_end(head1, n);
+    }
     print_dll(head1);
 }

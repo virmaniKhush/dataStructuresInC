@@ -67,12 +67,33 @@ void reverse_ll(struct Node* current_node){
     }
     head = prev_node;
 }
-void recursive_reverse(struct Node* node, struct Node* prev_node, struct Node* next_node){
-        next_node = node->next;
-        node->next = prev_node;
-        prev_node = node;
-        node=next_node;
+// void recursive_reverse(struct Node* node, struct Node* prev_node, struct Node* next_node){
+//         next_node = node->next;
+//         node->next = prev_node;
+//         prev_node = node;
+//         node=next_node;
+// }
+
+void ll_sorter(){
+    struct Node* temp_node;
+    temp_node = head;
+    int x;
+    
+    while(temp_node != NULL){
+        struct Node* temp2;
+        temp2 = temp_node->next;
+        while(temp2!=NULL){
+            if(temp_node->data > temp2->data){
+                x = temp_node->data;
+                temp_node->data = temp2->data;
+                temp2->data = x;
+            }
+            temp2 = temp2->next;
+        }
+        temp_node = temp_node->next;
+    }
 }
+
 void printll(){
     struct Node* temp;
     temp = head;
@@ -115,16 +136,19 @@ void main(){
     }
     printf("\nHead data = %d, current data=%d\n", head->data, current->data);
     printf("\nHead next = %p\n", head->next);
-    printf("\n\n");
+    printf("\n\nPRINTING LINKED LOST AFTER INSERTION !");
     printll();
-    printf("\n");
+    printf("\n\nDELETING 4 if present:\n");
     delete_using_value(head, 4);
     printll();
-    printf("\n");
+    printf("\n\nINSERTING AT POSITION 4, number 1234 !");
     insert_at_pos_n(1234, 4);
     printll();
-    printf("\n");
+    printf("\n\nREVERSING LINKED LIST !");
     reverse_ll(head);
+    printll();
+    printf("\n\nSORTING LINKED LIST !");
+    ll_sorter();
     printll();
     printf("\n");
 }
